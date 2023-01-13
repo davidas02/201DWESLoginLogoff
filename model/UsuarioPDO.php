@@ -5,13 +5,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 require_once './DBPDO.php';
-class UsuarioPDO{
+class UsuarioPDO implements UsuarioDB{
     public static function validarUsuario($codUsuario,$password){
        $entradaOk=true;
-       $parametros=[':codUsuario',$codUsuario];
-       $entradaSQL="select T01_Password from T01_Usuario where T01_codUsuario=:codUsuario";
-       $query= DBPDO::ejecutarConsulta($entradaSQL, $parametros);
-       $pass=$query['T01_Password'];
+       $query=<<<QUERY
+               select T01_password from T01_Usuario where T01_codUsuario=$codUsuario;
+               QUERY;
+       DBPDO::ejecutarConsulta($query);
        if($pass!=hash('sha256', ($codUsuario . $password))){
            $entradaOk=false;
        }

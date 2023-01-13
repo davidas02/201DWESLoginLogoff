@@ -6,26 +6,25 @@
  */
 require_once '../config/confDB.php';
 class DBPDO implements DB{
-    
-    public static function ejecutarConsulta($entradaSQL, $parametros) {
+    public static function ejecutarConsulta($entradaSQL, $parametros=null) {
         try {
-            $pdo=new PDO(DSN,USER,PASS);
-        $query=$pdo->prepare($entradaSQL);
+            $oPDO=new PDO(DSN,USER,PASS);
+        $query=$oPDO->prepare($entradaSQL);
         if(!is_null($parametros)){
-            foreach ($parametros as $par=>$valor){
-                $query->bindParam($par, $valor);
+            if(is_array($parametros)){
+                foreach ($parametros as $par=>$valor){
+                    $query->bindParam($par, $valor);
+                }
             }
         }
         $query->execute();
-        $salida=$query->fetchAll();
+        $salida=$query->fetchObject();
         return $salida;
-        } catch (Exception $exc) {
+        } catch (PDOException $exc) {
             echo $exc->getTraceAsString();
+            header("Location: index.php");
         } finally {
-            
+            unset($pdo);
         }
-
-        
     }
-
 }
