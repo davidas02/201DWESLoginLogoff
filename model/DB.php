@@ -6,5 +6,5 @@
  */
 
 interface DB {
-    public function ejecutarConsulta($entradaSQL, $parametros);
+    public static function ejecutarConsulta($entradaSQL, $parametros);
 }

@@ -1,4 +1,5 @@
-            <div id="ejercicios">
+  <div id="ejercicios">
+      <h3>LogIn</h3>
                 <form name="loginLogoff" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <table class="formulario">
                         <tr>

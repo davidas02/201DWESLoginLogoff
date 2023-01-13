@@ -6,5 +6,5 @@
  */
 
 interface UsuarioDB {
-    public function validarUsuario($codUsuario,$password);
+    public static function validarUsuario($codUsuario,$password);
 }

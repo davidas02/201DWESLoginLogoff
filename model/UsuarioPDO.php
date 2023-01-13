@@ -4,14 +4,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
-require_once './DBPDO.php';
 class UsuarioPDO implements UsuarioDB{
     public static function validarUsuario($codUsuario,$password){
        $entradaOk=true;
        $query=<<<QUERY
-               select T01_password from T01_Usuario where T01_codUsuario=$codUsuario;
+               select * from T01_Usuario where T01_codUsuario=$codUsuario AND T01_Password=sha2("{$codUsuario}{$password}",256);
                QUERY;
-       DBPDO::ejecutarConsulta($query);
+       $oResultado=DBPDO::ejecutarConsulta($query);
+       
        if($pass!=hash('sha256', ($codUsuario . $password))){
            $entradaOk=false;
        }
