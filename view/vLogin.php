@@ -24,6 +24,9 @@
                         <tr>
                             <td colspan="2"><input type="submit" id="registro" name="registro" value="Registrarse"></td>
                         </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" id="cancelar" name="cancelar" value="Cancelar"></td>
+                        </tr>
                     </table>
                 </form>
             </div>

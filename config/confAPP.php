@@ -15,14 +15,14 @@ $aControladores = [ //Array de controladores
     "login" => "controller/cLogin.php",
     "inicioPublico" => "controller/cInicioPublico.php",
     "inicioPrivado" => "controller/cInicioPrivado.php",
-    "registro" => "controller/cRegistro.php",
-    "detalle" => "controller/cDetalle.php"
+    //"registro" => "controller/cRegistro.php",
+    //"detalle" => "controller/cDetalle.php"
     ];
 $aVistas=[ //array de vistas
     "login" => "view/vLogin.php",
     "inicioPublico" => "view/vInicioPublico.php",
     "inicioPrivado"=> "view/vInicioPrivado.php",
-    "registro"=> "view/vRegistro.php",
-    "detalle"=>"view/vDetalle.php",
+    //"registro"=> "view/vRegistro.php",
+    //"detalle"=>"view/vDetalle.php",
     "layout"=> "view/layout.php"
 ];

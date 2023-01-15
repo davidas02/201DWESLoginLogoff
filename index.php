@@ -11,5 +11,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
             $_SESSION['paginaEnCurso']='inicioPublico'; //Establecemos la pagina de inicio en la pagina en curso 
         }
         require_once $aControladores[$_SESSION['paginaEnCurso']]; //pedimos el controlador del inicio publico
+        require_once $aVistas[$_SESSION['paginaEnCurso']];
         ?>
 
