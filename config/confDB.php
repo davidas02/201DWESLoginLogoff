@@ -24,9 +24,9 @@ define("PASS", "paso");
 //ENTORNO DESARROLLO CLASE LOCAL
 
 // IP del servidor y Nombre de la base de datos
-define("DSN", "mysql:dbname=DAW201DBProyectoLoginLogoffTema5;host=192.168.20.19");
+define("DSN", "mysql:dbname=DAW201DBLoginLogoff;host=192.168.20.19");
 // Usuario con el que se conecta 
-define("USER", "userDAW201AppLoginLogoff");
+define("USER", "userDAW201LoginLogoff");
 // Contraseña con la que conectarse a la base de datos 
 define("PASS", "paso");
 

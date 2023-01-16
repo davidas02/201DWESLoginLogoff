@@ -6,7 +6,6 @@
         <link rel="icon" type="image/x-icon" href="doc/img/favicon.ico"/>
     </head>
     <body>
-       
         <?php require_once $aVistas[$_SESSION['paginaEnCurso']]; ?>
         <footer> 
             <a href="../../doc/CVDavidAparicioSir.pdf" target="blank"><img src="doc/img/cv.png" alt="CV David Aparicio"/></a>

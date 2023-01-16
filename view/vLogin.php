@@ -10,16 +10,7 @@
                             <td><label for="password">Password:</label></td>
                             <td><input type="password" name="password" class="password" /></td>
                         </tr>
-                        <tr>
-                            <td colspan="2">
-                                <select id="idioma" name="idioma">
-                                    <option value="es"><img src="../doc/img/es.png" alt="Español"/>Español</option>
-                                    <option value="pt"><img src="../doc/img/pt.png" alt="Portugués"/>Portugués</option>
-                                    <option value="gb"><img src="../doc/img/gb.png" alt="Inglés"/>Inglés</option>
-                                </select>
-                            </td>
-
-                        </tr>
+                        
                         <tr><td colspan="2"><input type="submit" id="iniciarSesion" value="Iniciar Sesion" name="iniciarSesion"></td></tr>
                         <tr>
                             <td colspan="2"><input type="submit" id="registro" name="registro" value="Registrarse"></td>
