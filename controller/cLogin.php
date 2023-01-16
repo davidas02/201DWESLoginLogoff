@@ -10,6 +10,10 @@ if (isset($_REQUEST['cancelar'])) {
 }
 
 if (isset($_REQUEST['iniciarSesion'])) {
+    $aErrores=[
+        'usuario'=>null,
+        'password'=>null
+    ];
     $entradaOk = true;
     $buscaUsuarioPorCodigo = <<< sq2
     select * from T01_Usuario where T01_CodUsuario=:codUsuario;
