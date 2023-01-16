@@ -1,5 +1,5 @@
 
-<div id="ejercicios">
+<div id="detalle">
     <form name="ejercicio21" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <table class="formulario">
             <tr>

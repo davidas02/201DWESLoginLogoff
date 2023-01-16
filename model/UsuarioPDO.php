@@ -12,7 +12,7 @@ class UsuarioPDO implements UsuarioDB{
                QUERY;
        $oResultado=DBPDO::ejecutarConsulta($query);
        
-       if($pass!=hash('sha256', ($codUsuario . $password))){
+       if($oResultado->T01_codUsuario!=$codUsuario||$oResultado->T01_Password!=hash('sha256', ($codUsuario . $password))){
            $entradaOk=false;
        }
        return $entradaOk;
@@ -23,10 +23,21 @@ class UsuarioPDO implements UsuarioDB{
     public static function modificarUsuario() {
         
     }
-    public static function borrarUsuario() {
-        
+    public static function borrarUsuario($codUsuario) {
+        $query=<<<query
+                delete * from T01_Usuario where T01_codUsuario=$codUsuario;
+                query;
+        DBPDO::ejecutarConsulta($query);
     }
-    public static function validarCodNoExiste() {
-        
+    public static function validarCodNoExiste($codUsuario) {
+        $noExiste=true;
+        $query=<<< query
+                select * from T01_Usuario where T01_codUsuario=$codUsuario;
+                query;
+        $oResultado= DBPDO::ejecutarConsulta($query);
+        if(is_object($oResultado)){
+            $noExiste=false;
+        }
+        return $noExiste;
     }
 }

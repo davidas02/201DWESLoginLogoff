@@ -16,7 +16,7 @@ $aControladores = [ //Array de controladores
     "inicioPublico" => "controller/cInicioPublico.php",
     "inicioPrivado" => "controller/cInicioPrivado.php",
     "registro" => "controller/cRegistro.php",
-    //"detalle" => "controller/cDetalle.php"
+    "detalle" => "controller/cDetalle.php"
     ];
 $aVistas=[ //array de vistas
     "login" => "view/vLogin.php",
