@@ -32,12 +32,10 @@ footer img{
     padding: 0;
     box-sizing: border-box;
 }
- .detalle{
-    border: 1px black solid;
-    border-collapse: collapse;
-}
 .detalle table{
     width: 100%;
     text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
       
 }

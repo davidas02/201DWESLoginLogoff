@@ -1,5 +1,5 @@
 
-<div id="detalle">
+
     <form name="ejercicio21" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <table class="formulario">
             <tr>
@@ -7,7 +7,7 @@
             </tr>
         </table>
     </form>
-
+<div id="detalle">
     <?php
     //Muestra del contenido de la variable $_SESSION con foreach()
     echo '<h2>Mostrar $_SESSION con foreach()</h2>';
