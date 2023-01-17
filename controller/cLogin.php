@@ -50,7 +50,7 @@ sq3;
         unset($miDB);
     }
     if ($entradaOk) {
-        $_SESSION['FechaHoraUltimaConexionAnterior'] = $oUsuario->T01_FechaHoraUltimaConexion;
+        $conexionAnterior = $oUsuario->T01_FechaHoraUltimaConexion;
         try {
             $miDB = new PDO(DSN, USER, PASS);
             //actualizamos el usuario
@@ -67,9 +67,10 @@ sq3;
         } finally {
             unset($miDB);
         }
+        $oUsuario2=new Usuario($oUsuario->T01_CodUsuario,$oUsuario->T01_Password, $oUsuario->T01_DescUsuario, $oUsuario->T01_NumConexiones, $conexionAnterior);
         //Establecemos una nueva cookie para el idioma y utlizaremos el metodo time al cual le sumaremos 1800 segundos(media hora)
         //Introducimos el usuario en la sesion
-        $_SESSION['usuarioDAW201AppLoginLogoff'] = $oUsuario;
+        $_SESSION['usuarioDAW201AppLoginLogoff'] = $oUsuario2;
         $_SESSION['paginaEnCurso'] = 'inicioPrivado';
         header("Location: index.php");
     }

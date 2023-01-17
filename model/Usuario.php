@@ -1,12 +1,12 @@
 <?php
 class Usuario{
-    protected $codUsuario;
-    protected $password;
-    protected $descUsuario;
-    protected $numConexiones;
-    protected $fechaHoraUltimaConexion;
-    protected $fechaHoraUltimaConexionAnterior;
-    protected $perfil;
+    private $codUsuario;
+    private $password;
+    private $descUsuario;
+    private $numConexiones;
+    private $fechaHoraUltimaConexion;
+    private $fechaHoraUltimaConexionAnterior;
+    private $perfil;
     public function __construct($codUsuario,$password,$descUsuario,$numConexiones,$fechaHoraUltimaConexionAnterior) {
         $this->codUsuario= $codUsuario;
         $this->password=$password;
@@ -21,7 +21,7 @@ class Usuario{
     function getPassword() {
         return $this->password;
     }
-    function getdescUsuario(){
+    function getDescUsuario(){
         return $this->descUsuario;
     }
     function getNumConexiones() {
@@ -36,26 +36,26 @@ class Usuario{
     function getPerfil() {
         return $this->perfil;
     }
-    function setCodUsuario(){
-        return $this->codUsuario;
+    function setCodUsuario($codUsuario){
+        $this->codUsuario=$codUsuario;
     }
-    function setPassword() {
-        return $this->password;
+    function setPassword($password) {
+        $this->password=$password;
     }
-    function setdescUsuario(){
-        return $this->descUsuario;
+    function setDescUsuario($descUsuario){
+        $this->descUsuario=$descUsuario;
     }
-    function setNumConexiones() {
-        return $this->numConexiones;
+    function setNumConexiones($numConexiones) {
+        $this->numConexiones=$numConexiones;
     }
-    function setFechaHoraUltimaConexion(){
-        return $this->fechaHoraUltimaConexion;
+    function setFechaHoraUltimaConexion($fechaHoraUltimaConexion){
+        $this->fechaHoraUltimaConexion=$fechaHoraUltimaConexion;
     }
-    function setFechaHoraUltimaConexionAnterior() {
-        return $this->fechaHoraUltimaConexionAnterior;
+    function setFechaHoraUltimaConexionAnterior($fechaHoraUltimaConexionAnterior) {
+        $this->fechaHoraUltimaConexionAnterior=$fechaHoraUltimaConexionAnterior;
     }
-    function setPerfil() {
-        return $this->perfil;
+    function setPerfil($perfil) {
+        $this->perfil=$perfil;
     }
 }
 

@@ -3,20 +3,20 @@
         <p>
             <?php
             //Damos la bienvenida al usuario en diferentes idiomas dependiendo de la cookie idioma
-            echo "Bienvenido " . $_SESSION['usuarioDAW201AppLoginLogoff']->T01_DescUsuario;
+            echo "Bienvenido " . $_SESSION['usuarioDAW201AppLoginLogoff']->getDescUsuario();
             ?>
         </p>
         <p>
             <?php
             //comprobamos el numero de conexiones si es mayor a 1 tambien mostramos la fecha y hora de la ultima conexion
-            if ($_SESSION['usuarioDAW201AppLoginLogoff']->T01_NumConexiones > 1) {
-                echo"Ultimo inicio de sesión: " . $_SESSION['FechaHoraUltimaConexionAnterior'];
+            if ($_SESSION['usuarioDAW201AppLoginLogoff']->getNumConexiones() > 1) {
+                echo"Ultimo inicio de sesión: " . $_SESSION['usuarioDAW201AppLoginLogoff']->getFechaHoraUltimaConexionAnterior();
                 ?>
             </p>
             <p>
     <?php
     //Mostramos el numero de conexiones
-    echo"Te has conectado " . $_SESSION['usuarioDAW201AppLoginLogoff']->T01_NumConexiones . " veces";
+    echo"Te has conectado " . $_SESSION['usuarioDAW201AppLoginLogoff']->getNumConexiones() . " veces";
 } else {
     ?>
             </p>

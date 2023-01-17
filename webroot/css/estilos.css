@@ -1,3 +1,9 @@
+*{
+    font-family: 'Comic Sans MS';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 li{
     list-style: none;
     border: 1px black solid;
@@ -26,16 +32,10 @@ footer img{
     height:25px; 
     width:25px;
 }
-*{
-    font-family: 'Comic Sans MS';
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.detalle table{
+.detalle{
+    position: relative;
     width: 100%;
     text-align: center;
     border: 1px solid black;
-    border-collapse: collapse;
-      
+    border-collapse: collapse;  
 }
