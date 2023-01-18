@@ -15,65 +15,29 @@ if (isset($_REQUEST['iniciarSesion'])) {
         'password'=>null
     ];
     $entradaOk = true;
-    $buscaUsuarioPorCodigo = <<< sq2
-    select * from T01_Usuario where T01_CodUsuario=:codUsuario;
-sq2;
-//actualizacion usuario introducido
-    $actualizacionConexiones = <<< sq3
-    update T01_Usuario set T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() where T01_CodUsuario=:codUsuario;
-sq3;
-    try {
-        $miDB = new PDO(DSN, USER, PASS);
+    $oUsuario=null;
         //Comprobamos que el usuario no haya introducido inyeccion de codigo y los datos están correctos
-        $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], 8, 4, obligatorio: 1);
-        $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], 8, 4, 1, obligatorio: 1);
+        $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], 8, 4, OBLIGATORIO);
+        $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], 8, 4, 1, OBLIGATORIO);
         foreach ($aErrores as $claveError => $mensajeError) {
             if ($mensajeError != null) {
                 $entradaOk = false;
             }
         }
         if ($entradaOk) {
-            $queryConsultaPorCodigo = $miDB->prepare($buscaUsuarioPorCodigo);
-            $queryConsultaPorCodigo->bindParam(':codUsuario', $_REQUEST['usuario']);
-            $queryConsultaPorCodigo->execute();
-            $oUsuario = $queryConsultaPorCodigo->fetchObject();
-            //Comprobación de contraseña correcta
-            if (UsuarioPDO::validarUsuario($_REQUEST['usuario'], $_REQUEST['password'])) {
+            //Comprobación de Usuario Correcto
+            $oUsuario=UsuarioPDO::validarUsuario($_REQUEST['usuario'], $_REQUEST['password']);
+            
+            if(is_null($oUsuario)){
                 $entradaOk = false;
             }
         }
 //   si no se ha pulsado iniciar sesion le pedimos que muestre el formulario de inicio
-    } catch (PDOException $excepcion) {
-        echo 'Error: ' . $excepcion->getMessage() . "<br>";
-        echo 'Código de error: ' . $excepcion->getCode() . "<br>";
-    } finally {
-        unset($miDB);
-    }
     if ($entradaOk) {
-        $conexionAnterior = $oUsuario->T01_FechaHoraUltimaConexion;
-        try {
-            $miDB = new PDO(DSN, USER, PASS);
-            //actualizamos el usuario
-            $queryActualizacion = $miDB->prepare($actualizacionConexiones);
-            $queryActualizacion->bindParam(":codUsuario", $oUsuario->T01_CodUsuario);
-            $queryActualizacion->execute();
-            //Volvemos a buscar el usuario para actualizar el objeto usuario
-            $queryConsultaPorCodigo = $miDB->prepare($buscaUsuarioPorCodigo);
-            $queryConsultaPorCodigo->bindParam(':codUsuario', $_REQUEST['usuario']);
-            $queryConsultaPorCodigo->execute();
-            $oUsuario = $queryConsultaPorCodigo->fetchObject();
-        } catch (PDOException $exc) {
-            echo $exc->getMessage();
-        } finally {
-            unset($miDB);
-        }
-        $oUsuario2=new Usuario($oUsuario->T01_CodUsuario,$oUsuario->T01_Password, $oUsuario->T01_DescUsuario, $oUsuario->T01_NumConexiones, $conexionAnterior);
-        //Establecemos una nueva cookie para el idioma y utlizaremos el metodo time al cual le sumaremos 1800 segundos(media hora)
-        //Introducimos el usuario en la sesion
-        $_SESSION['usuarioDAW201AppLoginLogoff'] = $oUsuario2;
+        UsuarioPDO::registrarUltimaConexion($oUsuario);
+        $_SESSION['usuarioDAW201AppLoginLogoff'] = $oUsuario;
         $_SESSION['paginaEnCurso'] = 'inicioPrivado';
         header("Location: index.php");
     }
 }
-
 require_once $aVistas['layout'];

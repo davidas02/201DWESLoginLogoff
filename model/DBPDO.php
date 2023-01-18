@@ -10,21 +10,13 @@ class DBPDO implements DB{
         try {
             $oPDO=new PDO(DSN,USER,PASS);
         $query=$oPDO->prepare($entradaSQL);
-        if(!is_null($parametros)){
-            if(is_array($parametros)){
-                foreach ($parametros as $par=>$valor){
-                    $query->bindParam($par, $valor);
-                }
-            }
-        }
         $query->execute();
-        $salida=$query->fetchObject();
-        return $salida;
+        return $query;
         } catch (PDOException $exc) {
             echo $exc->getTraceAsString();
             header("Location: index.php");
         } finally {
-            unset($pdo);
+            unset($oPDO);
         }
     }
 }
