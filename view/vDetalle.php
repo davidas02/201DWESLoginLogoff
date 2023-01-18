@@ -10,7 +10,7 @@
     <h2>Mostrar $_SESSION </h2>
         <tr>
         <td>
-            <?php print_r($_SESSION['usuarioDAW201AppLoginLogoff']);?></td>
+            <?php print_r($_SESSION);?></td>
             <td><?php$valor?></td>;
        
         </tr>

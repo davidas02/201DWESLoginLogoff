@@ -3,20 +3,20 @@
         <p>
             <?php
             //Damos la bienvenida al usuario en diferentes idiomas dependiendo de la cookie idioma
-            echo "Bienvenido " . $_SESSION['usuarioDAW201AppLoginLogoff']->getDescUsuario();
+            echo "Bienvenido " . $_SESSION['usuarioDAW201LoginLogoff']->getDescUsuario();
             ?>
         </p>
         <p>
             <?php
             //comprobamos el numero de conexiones si es mayor a 1 tambien mostramos la fecha y hora de la ultima conexion
-            if ($_SESSION['usuarioDAW201AppLoginLogoff']->getNumConexiones() > 1) {
-                echo"Ultimo inicio de sesión: " . $_SESSION['usuarioDAW201AppLoginLogoff']->getFechaHoraUltimaConexionAnterior();
+            if ($_SESSION['usuarioDAW201LoginLogoff']->getNumConexiones() > 1) {
+                echo"Ultimo inicio de sesión: " . $_SESSION['usuarioDAW201LoginLogoff']->getFechaHoraUltimaConexionAnterior();
                 ?>
             </p>
             <p>
     <?php
     //Mostramos el numero de conexiones
-    echo"Te has conectado " . $_SESSION['usuarioDAW201AppLoginLogoff']->getNumConexiones() . " veces";
+    echo"Te has conectado " . $_SESSION['usuarioDAW201LoginLogoff']->getNumConexiones() . " veces";
 } else {
     ?>
             </p>
@@ -27,14 +27,15 @@
             ?>
         </p>
         <tr>
-            <td colspan="2"><input type="submit" id="salir" value="Salir" name="salir"></td>
+            <td><input type="submit" id="salir" value="Salir" name="salir"></td>
+        
+            <td><input type="submit" id="detalle" value="Detalle" name="detalle"></td>
+        
+            <td><input type="submit" id="modificar" value="Modificar Perfil" name="modificar"></td>
+            
+            <td><input type="submit" id="mtoDptos" name="mtoDptos" value="Mantenimiento Departamentos"></td>
         </tr>
-        <tr>
-            <td colspan="2"><input type="submit" id="detalle" value="Detalle" name="detalle"></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" id="modificar" value="Modificar Perfil" name="modificar"></td>
-        </tr>
+        
     </table>
 </form>
 

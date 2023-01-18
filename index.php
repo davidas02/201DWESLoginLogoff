@@ -13,4 +13,3 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
         require_once $aControladores[$_SESSION['paginaEnCurso']]; //pedimos el controlador del inicio publico
         require_once $aVistas[$_SESSION['paginaEnCurso']];
         ?>
-

@@ -7,8 +7,14 @@ require_once $aVistas[$_SESSION['paginaEnCurso']];
 if (isset($_REQUEST['cancelar'])) {
     $_SESSION['paginaEnCurso'] = $_SESSION['paginaAnterior'];
     header('Location: index.php');
+    exit();
 }
-
+if(isset($_REQUEST['registro'])){
+    $_SESSION['paginaAnterior']=$_SESSION['paginaEnCurso'];
+    $_SESSION['paginaEnCurso']="registro";
+    header('Location: index.php');
+    exit();
+}
 if (isset($_REQUEST['iniciarSesion'])) {
     $aErrores=[
         'usuario'=>null,
@@ -35,7 +41,7 @@ if (isset($_REQUEST['iniciarSesion'])) {
 //   si no se ha pulsado iniciar sesion le pedimos que muestre el formulario de inicio
     if ($entradaOk) {
         UsuarioPDO::registrarUltimaConexion($oUsuario);
-        $_SESSION['usuarioDAW201AppLoginLogoff'] = $oUsuario;
+        $_SESSION['usuarioDAW201LoginLogoff'] = $oUsuario;
         $_SESSION['paginaEnCurso'] = 'inicioPrivado';
         header("Location: index.php");
     }
