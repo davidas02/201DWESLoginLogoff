@@ -12,7 +12,7 @@ require_once 'model/DBPDO.php';
  */
 define("OBLIGATORIO", 1);
 $aControladores = [ //Array de controladores 
-    "login" => "controller/cLogin.php",
+    "login" => "./controller/cLogin.php",
     "inicioPublico" => "controller/cInicioPublico.php",
     "inicioPrivado" => "controller/cInicioPrivado.php",
     "registro" => "controller/cRegistro.php",
@@ -22,7 +22,7 @@ $aControladores = [ //Array de controladores
     "borrarUsuario"=>"controller/cBorrarCuenta.php"
     ];
 $aVistas=[ //array de vistas
-    "login" => "view/vLogin.php",
+    "login" => "./view/vLogin.php",
     "inicioPublico" => "view/vInicioPublico.php",
     "inicioPrivado"=> "view/vInicioPrivado.php",
     "registro"=> "view/vRegistro.php",

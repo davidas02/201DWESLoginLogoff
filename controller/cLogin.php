@@ -2,8 +2,6 @@
 
 require_once 'core/221024libreriaValidacionFormularios.php';
 
-require_once $aVistas[$_SESSION['paginaEnCurso']];
-
 if (isset($_REQUEST['cancelar'])) {
     $_SESSION['paginaEnCurso'] = $_SESSION['paginaAnterior'];
     header('Location: index.php');
