@@ -1,5 +1,5 @@
 create database if not exists DAW201DBLoginLogoff;
-use DAW201DBProyectoLoginLogoffTema5;
+use DAW201DBLoginLogoff;
 create table if not exists T01_Usuario(
 T01_CodUsuario varchar(8) primary key,
 T01_Password varchar(255)NOT NULL,
