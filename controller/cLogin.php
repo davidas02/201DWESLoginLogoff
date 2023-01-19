@@ -5,13 +5,11 @@ require_once 'core/221024libreriaValidacionFormularios.php';
 if (isset($_REQUEST['cancelar'])) {
     $_SESSION['paginaEnCurso'] = $_SESSION['paginaAnterior'];
     header('Location: index.php');
-    exit();
 }
 if(isset($_REQUEST['registro'])){
     $_SESSION['paginaAnterior']=$_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso']="registro";
     header('Location: index.php');
-    exit();
 }
 if (isset($_REQUEST['iniciarSesion'])) {
     $aErrores=[
@@ -31,8 +29,7 @@ if (isset($_REQUEST['iniciarSesion'])) {
         if ($entradaOk) {
             //Comprobación de Usuario Correcto
             $oUsuario=UsuarioPDO::validarUsuario($_REQUEST['usuario'], $_REQUEST['password']);
-            
-            if(is_null($oUsuario)){
+            if(!is_object($oUsuario)){
                 $entradaOk = false;
             }
         }

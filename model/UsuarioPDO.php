@@ -16,7 +16,7 @@ class UsuarioPDO implements UsuarioDB {
             $oDatos = $oResultado->fetchObject();
             if (is_object($oDatos)) {
                 return new Usuario($oDatos->T01_CodUsuario, $oDatos->T01_Password, $oDatos->T01_DescUsuario, $oDatos->T01_NumConexiones, $oDatos->T01_FechaHoraUltimaConexion);
-            }else{
+            } else {
                 return false;
             }
         } catch (Exception $ex) {
@@ -40,10 +40,18 @@ class UsuarioPDO implements UsuarioDB {
                 sql;
         if (self::validarCodNoExiste($codUsuario)) {
             DBPDO::ejecutarConsulta($alta);
-            return new Usuario($codUsuario, hash('sha256', ($codUsuario.$password)), $descUsuario, 1,new DateTime("now"));
-            } else {
-                return false;
-            }
+            return new Usuario($codUsuario, hash('sha256', ($codUsuario . $password)), $descUsuario, 1, new DateTime("now"));
+        } else {
+            return false;
+        }
+    }
+
+    public static function cambiarPassword($oUsuario, $newPassword) {
+        $modificarUsuario = <<< sq3
+            UPDATE T01_Usuario SET T01_Password="{$newPassword}" WHERE T01_CodUsuario="{$oUsuario->getCodUsuario()}";
+        sq3;
+        $ejecucionOK=DBPDO::ejecutarConsulta($modificarUsuario);
+        return $ejecucionOK;
     }
 
     public static function modificarUsuario($oUsuario, $descUsuario) {
