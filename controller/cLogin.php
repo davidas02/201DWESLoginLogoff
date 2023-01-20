@@ -35,9 +35,11 @@ if (isset($_REQUEST['iniciarSesion'])) {
         }
 //   si no se ha pulsado iniciar sesion le pedimos que muestre el formulario de inicio
     if ($entradaOk) {
-        UsuarioPDO::registrarUltimaConexion($oUsuario);
-        $_SESSION['usuarioDAW201LoginLogoff'] = $oUsuario;
-        $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+        $registrado=UsuarioPDO::registrarUltimaConexion($oUsuario);
+        if(is_object($registrado)){
+            $_SESSION['usuarioDAW201LoginLogoff'] = $oUsuario;
+            $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+        }
         header("Location: index.php");
     }
 }

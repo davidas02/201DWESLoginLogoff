@@ -30,7 +30,7 @@ class UsuarioPDO implements UsuarioDB {
               UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now()
               WHERE T01_CodUsuario="{$oUsuario->getCodUsuario()}";
               query;
-        DBPDO::ejecutarConsulta($actualizar);
+        $consultaEjecuada=DBPDO::ejecutarConsulta($actualizar);
         return $oUsuario;
     }
 
