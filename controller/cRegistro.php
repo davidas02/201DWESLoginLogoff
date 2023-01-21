@@ -32,9 +32,9 @@ if(isset($_REQUEST['registro'])){
         if(!is_bool($oUsuario)){
             $_SESSION['paginaEnCurso']='inicioPrivado';
             $_SESSION['usuarioDAW201LoginLogoff']=$oUsuario;
-            header('Location: index.php');
-            exit();
         }
+        header('Location: index.php');
+            exit();
         }
     }
     

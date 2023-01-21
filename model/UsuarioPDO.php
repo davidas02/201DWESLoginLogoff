@@ -72,10 +72,10 @@ class UsuarioPDO implements UsuarioDB {
     public static function validarCodNoExiste($codUsuario) {
         $noExiste = true;
         $query = <<< query
-                select from T01_Usuario where T01_codUsuario=$codUsuario;
+                select from T01_Usuario where T01_codUsuario="{$codUsuario}";
                 query;
         $oResultado = DBPDO::ejecutarConsulta($query);
-        if (is_object($oResultado)) {
+        if (!$oResultado) {
             $noExiste = false;
         }
         return $noExiste;

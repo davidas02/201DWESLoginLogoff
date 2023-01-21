@@ -50,6 +50,15 @@ main{
     background-size: contain;
     background-position: center;
 }
+#inicioPrivado{
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
 /*Pie de pagina*/
 footer{
     flex: 0 0 8%;
