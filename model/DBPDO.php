@@ -14,8 +14,7 @@ class DBPDO implements DB{
         return $query;
         } catch (PDOException $excepcion) {
             $_SESSION['paginaEnCurso']='error';
-            $error=new Error($excepcion->getCode(), $excepcion->getMessage(), $excepcion->getFile(), $excepcion->getLine(), $_SESSION['paginaAnterior']);
-            $_SESSION['error']=$error;
+            $_SESSION['error']=new ErrorLoginLogoff($excepcion->getCode(), $excepcion->getMessage(), $excepcion->getFile(), $excepcion->getLine(), $_SESSION['paginaAnterior']);
             
             header('Location: index.php');
             exit;
