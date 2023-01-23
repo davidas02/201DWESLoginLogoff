@@ -15,7 +15,7 @@
         </div>
     </header>
     <?php
-    include_once '../conf/confDBPDOExplotacion.php';
+    include_once '../config/confDB.php';
     try {
         //Establecimiento de la conexión 
         $miDB = new PDO(DSN, USER, PASS);
