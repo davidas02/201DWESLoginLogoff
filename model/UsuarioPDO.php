@@ -16,7 +16,7 @@ class UsuarioPDO implements UsuarioDB {
             $oDatos = $oResultado->fetchObject();
             if (is_object($oDatos)) {
                 return new Usuario($oDatos->T01_CodUsuario, $oDatos->T01_Password, $oDatos->T01_DescUsuario, $oDatos->T01_NumConexiones, $oDatos->T01_FechaHoraUltimaConexion);
-            }else{
+            } else {
                 return false;
             }
         } catch (Exception $ex) {
@@ -30,7 +30,7 @@ class UsuarioPDO implements UsuarioDB {
               UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now()
               WHERE T01_CodUsuario="{$oUsuario->getCodUsuario()}";
               query;
-        DBPDO::ejecutarConsulta($actualizar);
+        $consultaEjecuada=DBPDO::ejecutarConsulta($actualizar);
         return $oUsuario;
     }
 
@@ -40,10 +40,18 @@ class UsuarioPDO implements UsuarioDB {
                 sql;
         if (self::validarCodNoExiste($codUsuario)) {
             DBPDO::ejecutarConsulta($alta);
-            return new Usuario($codUsuario, hash('sha256', ($codUsuario.$password)), $descUsuario, 1,new DateTime("now"));
-            } else {
-                return false;
-            }
+            return new Usuario($codUsuario, hash('sha256', ($codUsuario . $password)), $descUsuario, 1, new DateTime("now"));
+        } else {
+            return false;
+        }
+    }
+
+    public static function cambiarPassword($oUsuario, $newPassword) {
+        $modificarUsuario = <<< sq3
+            UPDATE T01_Usuario SET T01_Password="{$newPassword}" WHERE T01_CodUsuario="{$oUsuario->getCodUsuario()}";
+        sq3;
+        $ejecucionOK=DBPDO::ejecutarConsulta($modificarUsuario);
+        return $ejecucionOK;
     }
 
     public static function modificarUsuario($oUsuario, $descUsuario) {
@@ -64,10 +72,10 @@ class UsuarioPDO implements UsuarioDB {
     public static function validarCodNoExiste($codUsuario) {
         $noExiste = true;
         $query = <<< query
-                select from T01_Usuario where T01_codUsuario=$codUsuario;
+                select * from T01_Usuario where T01_CodUsuario="{$codUsuario}";
                 query;
         $oResultado = DBPDO::ejecutarConsulta($query);
-        if (is_object($oResultado)) {
+        if (!$oResultado) {
             $noExiste = false;
         }
         return $noExiste;

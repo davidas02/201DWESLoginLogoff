@@ -10,11 +10,14 @@ class DBPDO implements DB{
         try {
             $oPDO=new PDO(DSN,USER,PASS);
         $query=$oPDO->prepare($entradaSQL);
-        $query->execute();
+        $query->execute($parametros);
         return $query;
-        } catch (PDOException $exc) {
-            echo $exc->getTraceAsString();
-            header("Location: index.php");
+        } catch (PDOException $excepcion) {
+            $_SESSION['paginaEnCurso']='error';
+            $_SESSION['error']=new ErrorLoginLogoff($excepcion->getCode(), $excepcion->getMessage(), $excepcion->getFile(), $excepcion->getLine(), $_SESSION['paginaAnterior']);
+            
+            header('Location: index.php');
+            exit;
         } finally {
             unset($oPDO);
         }
