@@ -17,7 +17,7 @@ if(isset($_REQUEST['registro'])){
     'Rpassword' => null,
     'nombre'=>null
 ];
-    $miDB = new PDO(DSN, USER, PASS);
+    $miDB = new PDO(DSN, USER, PASSWORD);
         //Comprobamos que el usuario no haya introducido inyeccion de codigo y los datos están correctos
         $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], 8, 4, obligatorio: 1);
         $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], 8, 4, 1, obligatorio: 1);

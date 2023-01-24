@@ -1,13 +1,7 @@
 <?php
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
-
 class UsuarioPDO implements UsuarioDB {
-
-    public static function validarUsuario($codUsuario, $password) {
+public static function validarUsuario($codUsuario, $password) {
         try {
             $query = <<<QUERY
                select * from T01_Usuario where T01_CodUsuario="$codUsuario" AND T01_Password=sha2("{$codUsuario}{$password}",256);
@@ -80,5 +74,6 @@ class UsuarioPDO implements UsuarioDB {
         }
         return $noExiste;
     }
-
 }
+
+?>
